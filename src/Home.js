@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
-import logo from './react.svg';
-import './Home.css';
-import  Blog from './components/Blog';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import fetch from 'isomorphic-fetch';
 
-class Home extends Component {
-  // static async getInitialProps({ req, res, match, history, location, ...ctx }) {
-  //   return { whatever: 'stuff' };
-  // }
+
+class Home extends React.Component {
+  static async getInitialProps({ req, res, match }) {
+    const hn = await fetch('https://node-hnapi.herokuapp.com/news');
+    const stuff = await hn.json();
+    return { stuff };
+  }
 
   render() {
     return (
-      <div className="Home">
-        <div className="Home-header">
-          <img src={logo} className="Home-logo" alt="logo" />
-          <h2>Welcome to After.js</h2>
-        </div>
-        <p className="Home-intro">
-          To get started, edit <code>src/Home.js</code> or{' '}
-          <code>src/About.js</code>and save to reload.
-        </p>
-        <Link to="/about">About -></Link>
-        <div className="blog-container">
-          <Blog />
-        </div>
+      <div>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <h1>About</h1>
+        <pre>
+          {this.props.stuff
+            ? this.props.stuff.map(item => <p key={item.id}>{item.title}</p>)
+            : 'Loading...'}
+        </pre>
       </div>
     );
   }
