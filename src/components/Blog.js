@@ -1,39 +1,20 @@
 import React, { Component } from 'react';
-// require('es6-promise').polyfill();
-// require('isomorphic-fetch');
-import fetch from 'isomorphic-unfetch';
 import { Link } from 'react-router-dom';
+import BlogEntry from './BlogEntry';
 
 
 class Blog extends Component {
 
+
   render() {
     return (
-      <div className="Home">
-      {/* <h1>{this.props.data ? this.props.data : 'Loadings...'}</h1> */}
+      <div className="blog">
       <h1>Batman TV Shows</h1>
-    <ul>
-      {this.props.shows.map(({show}) => (
-        <li key={show.id}>
-          <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-            <a>{show.name}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+      <ul>
+        <BlogEntry entry={this.props.blogs[2]}/>
+      </ul>
       </div>
     );
-  }
-}
-
-Blog.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-  const data = await res.json()
-
-  console.log(`Show data fetched. Count: ${data.length}`)
-
-  return {
-    shows: data
   }
 }
 
