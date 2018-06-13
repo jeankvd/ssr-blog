@@ -6,7 +6,7 @@ class BlogEntry extends Component {
         return(
             <div className="blog-entry">
                 <h1>{this.props.entry.title.rendered}</h1>
-                <p>{this.props.entry.content.rendered}</p>
+                <div dangerouslySetInnerHTML={{"__html": this.props.entry.content.rendered}}></div>
             </div>
         )
     }

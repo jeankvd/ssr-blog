@@ -16,7 +16,7 @@ class Home extends React.Component {
       <div>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
-        <h1>About</h1>
+        <NavLink to="/components/blog">Blog Example</NavLink>
         <Blog blogs={this.props.stuff} />
       </div>
     );
