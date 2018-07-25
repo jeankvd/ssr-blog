@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import fetch from 'isomorphic-fetch';
 import Blog from './components/Blog'
+import Footer from './components/Footer'
 
 
 class Home extends React.Component {
@@ -13,11 +14,14 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="dark">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/components/blog">Blog Example</NavLink>
+        <div>
         <Blog blogs={this.props.stuff} />
+        </div>
+        <Footer/>
       </div>
     );
   }

@@ -34,3 +34,12 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: red;
+}
+
+.blog p {
+  font-size: 13px;
+  line-height: 1.9;
+}
